@@ -1,0 +1,219 @@
+1. def is_leap_year(year):
+    if (year % 4 == 0):
+        if (year % 100 == 0):
+            if (year % 400 == 0):
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+year = int(input("Enter the year to be checked: "))
+if is_leap_year(year):
+    print(f"{year} is a Leap Year")
+else:
+    print(f"{year} is not a Leap Year")
+
+2. def max_words_in_sentence(sentences):
+    max_words = 0
+    for sentence in sentences:
+        words = sentence.split()
+        max_words = max(max_words, len(words))
+    return max_words  
+sentences = ["alice and bob love apple", "i think so too", "this is great thanks very much"]
+print(max_words_in_sentence(sentences))
+
+3. a=int(input("enter a number1:"))
+b=int(input("enter a number2:"))
+for x in range(a,b+1):
+    if x>1:
+        for i in range(2,x):
+            if(x%i)==0:
+                break
+        else:
+            print(x) 
+
+4. def is_palindrome(x):
+    str_x = str(x)
+    return str_x == str_x[::-1]
+x = 122
+print(is_palindrome(x))
+
+5. Number = int(input(" Please Enter any Number: "))
+Sum = 0
+for i in range(1, Number):
+    if(Number % i == 0):
+        Sum = Sum + i
+if (Sum == Number):
+    print(" %d is a Perfect Number" %Number)
+else:
+    print(" %d is not a Perfect Number" %Number)
+
+6. A=input("Enter upper limit:")
+c=0
+m=2
+if A.isnumeric():
+    x=int(A)
+    while(c<x):
+        for n in range(1,m+1):
+            a=m*m-n*n
+            b=2*m*n
+            c=m*m+n*n
+            if(c>x):
+                break
+            if(a==0 or b==0 or c==0):
+                break
+            print(a,b,c)
+        m=m+1
+else:
+    print("invalid input")
+
+7. def calculate_simple_interest(principal, years, is_senior):
+    if principal <= 0 or years <= 0:
+        return "Principal and years must be positive numbers."
+    
+    rate_of_interest = 12 if is_senior else 10
+    interest = (principal * years * rate_of_interest) / 100
+    return interest
+principal = 200000
+years = 3
+is_senior = False
+interest = calculate_simple_interest(principal, years, is_senior)
+print("Interest:", interest)
+
+8. def sumsquare(l):
+    odd_sum = sum(x**2 for x in l if x % 2 != 0)
+    even_sum = sum(x**2 for x in l if x % 2 == 0)
+    return [odd_sum, even_sum]
+
+l = [7, 18, 9, 1, 12, 13, 4, 30]
+result = sumsquare(l)
+print(result)  # Output: [35, 20]
+
+9. def sort_names(names):
+    return sorted(names)
+names = ["Banana", "Carrot", "Radish", "Apple", "Jack"]
+sorted_names = sort_names(names)
+for name in sorted_names:
+    print(name)
+
+10. def add_matrices(mat1, mat2):
+    result = []
+    for i in range(len(mat1)):
+        row = []
+        for j in range(len(mat1[0])):
+            row.append(mat1[i][j] + mat2[i][j])
+        result.append(row)
+    return result
+mat1 = [[1, 2], [5, 3]]
+mat2 = [[2, 3], [4, 1]]
+mat_sum = add_matrices(mat1, mat2)
+for row in mat_sum:
+    print(" ".join(map(str, row)))
+
+11. from itertools import permutations
+def find_combinations(digits):
+    return [''.join(p) for p in permutations(digits)]
+digits = "123"
+combinations = find_combinations(digits)
+for combo in combinations:
+    print(combo)
+
+12. def print_numbers(M, N, K):
+    numbers = []
+    current = M
+    while current <= N:
+        numbers.append(current)
+        current += K
+    return numbers
+inputs = [50, 100, 7]
+M, N, K = inputs
+result = print_numbers(M, N, K)
+print(", ".join(map(str, result)))
+
+13. def is_isomorphic(s, t):
+    if len(s) != len(t):
+        return False
+    mapping_s_t = {}
+    mapping_t_s = {}
+    for char_s, char_t in zip(s, t):
+        if char_s in mapping_s_t:
+            if mapping_s_t[char_s] != char_t:
+                return False
+        else:
+            mapping_s_t[char_s] = char_t
+
+        if char_t in mapping_t_s:
+            if mapping_t_s[char_t] != char_s:
+                return False
+        else:
+            mapping_t_s[char_t] = char_s
+
+    return True
+s = input("Enter the first string: ")
+t = input("Enter the second string: ")
+
+if is_isomorphic(s, t):
+    print("The strings are isomorphic.")
+else:
+    print("The strings are not isomorphic.")
+
+14. class ListNode:
+    def _init_(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def mergeTwoLists(list1: ListNode, list2: ListNode) -> ListNode:
+    dummy = ListNode()  
+    current = dummy
+    while list1 and list2:
+        if list1.val < list2.val:
+            current.next = list1
+            list1 = list1.next
+        else:
+            current.next = list2
+            list2 = list2.next
+        current = current.next
+    current.next = list1 if list1 else list2
+    
+    return dummy.next
+def printList(node: ListNode):
+    while node:
+        print(node.val, end=" ")
+        node = node.next
+    print()
+list1 = ListNode(1, ListNode(2, ListNode(4)))
+list2 = ListNode(1, ListNode(3, ListNode(4)))
+merged_list = mergeTwoLists(list1, list2)
+printList(merged_list)
+
+15. def count_vowels(s: str) -> int:
+    vowels = 'aeiouAEIOU'
+    count = 0
+    for char in s:
+        if char in vowels:
+            count += 1
+    return count
+input_string = "SaveethaSchoolofEngineering"
+number_of_vowels = count_vowels(input_string)
+print(f"Number of vowels = {number_of_vowels}")
+
+16. def is_valid_string(s: str)-> bool:
+    """
+    checks if the string is valid (non-empty)after stripping whitespace.
+    Args:
+    s(str): Input string to validate.
+    Returns:
+    bool: True if the stripped string is not empty,False otherwise.
+    """
+    stripped_string=s.strip()
+    return bool(stripped_string)
+print(is_valid_string("  "))
+
+17. text = "   Hello, World!   "
+
+stripped_text = text.strip()
+
+print(f"Original: '{text}'")
+print(f"Stripped: '{stripped_text}'"),
