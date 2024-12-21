@@ -1,219 +1,537 @@
-1. def is_leap_year(year):
-    if (year % 4 == 0):
-        if (year % 100 == 0):
-            if (year % 400 == 0):
-                return True
-            else:
-                return False
-        else:
-            return True
-    else:
-        return False
-year = int(input("Enter the year to be checked: "))
-if is_leap_year(year):
-    print(f"{year} is a Leap Year")
+1. def calculate_simple_interest(principal, years, is_senior):
+if is_senior:
+rate_of_interest = 12
 else:
-    print(f"{year} is not a Leap Year")
+rate_of_interest = 10
+interest = (principal * years * rate_of_interest) / 100
+return interest
+principal = float(input("Enter the principal amount: "))
+years = int(input("Enter the number of years: "))
+is_senior = input("Is customer senior citizen (y/n): ").lower() == 'y'
+interest = calculate_simple_interest(principal, years, is_senior)
+print(f"Interest: {interest}")
 
-2. def max_words_in_sentence(sentences):
-    max_words = 0
-    for sentence in sentences:
-        words = sentence.split()
-        max_words = max(max_words, len(words))
-    return max_words  
+2. def sumsquare(l):
+odd_sum = 0
+even_sum = 0
+for num in l:
+if num % 2 == 0:
+even_sum += num ** 2
+else:
+odd_sum += num ** 2
+return [odd_sum, even_sum]
+n = int(input("Enter the number of elements: "))
+l = []
+for _ in range(n):
+element = int(input("Enter the element: "))
+l.append(element)
+result = sumsquare(l)
+print(result)
+
+3. def max_words_in_sentence(sentences):
+max_words = 0
+for sentence in sentences:
+word_count = len(sentence.split())
+if word_count > max_words:
+max_words = word_count
+return max_words
 sentences = ["alice and bob love apple", "i think so too", "this is great thanks very much"]
 print(max_words_in_sentence(sentences))
 
-3. a=int(input("enter a number1:"))
-b=int(input("enter a number2:"))
-for x in range(a,b+1):
-    if x>1:
-        for i in range(2,x):
-            if(x%i)==0:
-                break
-        else:
-            print(x) 
-
 4. def is_palindrome(x):
-    str_x = str(x)
-    return str_x == str_x[::-1]
-x = 122
+str_x = str(x)
+return str_x == str_x[::-1]
+x = 121
 print(is_palindrome(x))
 
-5. Number = int(input(" Please Enter any Number: "))
-Sum = 0
-for i in range(1, Number):
-    if(Number % i == 0):
-        Sum = Sum + i
-if (Sum == Number):
-    print(" %d is a Perfect Number" %Number)
+5. def print_numbers(M, N, K):
+result = []
+for i in range(M, N + 1, K + 1):
+result.append(i)
+return result
+M = 50
+N = 100
+K = 7
+output = print_numbers(M, N, K)
+print(", ".join(map(str, output)))
+
+6. def is_leap_year(year):
+if year % 400 == 0:
+return True
+elif year % 100 == 0:
+return False
+elif year % 4 == 0:
+return True
 else:
-    print(" %d is not a Perfect Number" %Number)
-
-6. A=input("Enter upper limit:")
-c=0
-m=2
-if A.isnumeric():
-    x=int(A)
-    while(c<x):
-        for n in range(1,m+1):
-            a=m*m-n*n
-            b=2*m*n
-            c=m*m+n*n
-            if(c>x):
-                break
-            if(a==0 or b==0 or c==0):
-                break
-            print(a,b,c)
-        m=m+1
+return False
+year = int(input("Enter Date: "))
+if is_leap_year(year):
+print(f"Given year {year} is a Leap Year")
 else:
-    print("invalid input")
+print(f"Given year {year} is a Non-Leap Year")
+example_year = 1944
+if is_leap_year(example_year):
+print(f"Leap Year: {example_year}")
 
-7. def calculate_simple_interest(principal, years, is_senior):
-    if principal <= 0 or years <= 0:
-        return "Principal and years must be positive numbers."
-    
-    rate_of_interest = 12 if is_senior else 10
-    interest = (principal * years * rate_of_interest) / 100
-    return interest
-principal = 200000
-years = 3
-is_senior = False
-interest = calculate_simple_interest(principal, years, is_senior)
-print("Interest:", interest)
+7. def print_pattern(rows):
+for i in range(1, rows + 1):
+for j in range(i, 0, -1):
+print(j, end="")
+print()
+rows = 5
+print_pattern(rows)
 
-8. def sumsquare(l):
-    odd_sum = sum(x**2 for x in l if x % 2 != 0)
-    even_sum = sum(x**2 for x in l if x % 2 == 0)
-    return [odd_sum, even_sum]
+8. def merge_two_sorted_lists(list1, list2):
+merged_list = []
+i, j = 0, 0
+while i < len(list1) and j < len(list2):
+if list1[i] < list2[j]:
+merged_list.append(list1[i])
+i += 1
+else:
+merged_list.append(list2[j])
+j += 1
+while i < len(list1):
+merged_list.append(list1[i])
+i += 1
+while j < len(list2):
+merged_list.append(list2[j]) 
+j += 1
+return merged_list
+list1 = [1, 2, 4]
+list2 = [1, 3, 4]
+print(merge_two_sorted_lists(list1, list2)) 
 
-l = [7, 18, 9, 1, 12, 13, 4, 30]
-result = sumsquare(l)
-print(result)  # Output: [35, 20]
-
-9. def sort_names(names):
-    return sorted(names)
-names = ["Banana", "Carrot", "Radish", "Apple", "Jack"]
-sorted_names = sort_names(names)
-for name in sorted_names:
-    print(name)
-
-10. def add_matrices(mat1, mat2):
-    result = []
-    for i in range(len(mat1)):
-        row = []
-        for j in range(len(mat1[0])):
-            row.append(mat1[i][j] + mat2[i][j])
-        result.append(row)
-    return result
-mat1 = [[1, 2], [5, 3]]
-mat2 = [[2, 3], [4, 1]]
-mat_sum = add_matrices(mat1, mat2)
+9. def matrix_addition(mat1, mat2):
+rows = len(mat1)
+cols = len(mat1[0])
+mat_sum = [[0 for _ in range(cols)] for _ in range(rows)]
+for i in range(rows):
+for j in range(cols):
+mat_sum[i][j] = mat1[i][j] + mat2[i][j]
+return mat_sum
+mat1 = [
+[1, 2],
+[5, 3]
+]
+mat2 = [
+[2, 3],
+[4, 1]
+]
+mat_sum = matrix_addition(mat1, mat2)
 for row in mat_sum:
-    print(" ".join(map(str, row)))
+print(" ".join(map(str, row)))
 
-11. from itertools import permutations
+10. from itertools import permutations
 def find_combinations(digits):
-    return [''.join(p) for p in permutations(digits)]
+return [''.join(p) for p in permutations(digits)]
 digits = "123"
 combinations = find_combinations(digits)
-for combo in combinations:
-    print(combo)
+for combination in combinations:
+print(combination)
 
-12. def print_numbers(M, N, K):
-    numbers = []
-    current = M
-    while current <= N:
-        numbers.append(current)
-        current += K
-    return numbers
-inputs = [50, 100, 7]
-M, N, K = inputs
-result = print_numbers(M, N, K)
-print(", ".join(map(str, result)))
-
-13. def is_isomorphic(s, t):
-    if len(s) != len(t):
-        return False
-    mapping_s_t = {}
-    mapping_t_s = {}
-    for char_s, char_t in zip(s, t):
-        if char_s in mapping_s_t:
-            if mapping_s_t[char_s] != char_t:
-                return False
-        else:
-            mapping_s_t[char_s] = char_t
-
-        if char_t in mapping_t_s:
-            if mapping_t_s[char_t] != char_s:
-                return False
-        else:
-            mapping_t_s[char_t] = char_s
-
-    return True
-s = input("Enter the first string: ")
-t = input("Enter the second string: ")
-
-if is_isomorphic(s, t):
-    print("The strings are isomorphic.")
+11. def sort_names(names, order):
+if order.lower() == 'a':
+return sorted(names)
+elif order.lower() == 'd':
+return sorted(names, reverse=True)
 else:
-    print("The strings are not isomorphic.")
+return "Invalid order choice. Please enter 'A' for ascending or 'D' for descending."
+names = ["Banana", "Carrot", "Radish", "Apple", "Jack"]
+order = input("Order (A/D): ")
+sorted_names = sort_names(names, order)
+if isinstance(sorted_names, list):
+for name in sorted_names:
+print(name)
+else:
+print(sorted_names)
 
-14. class ListNode:
-    def _init_(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-def mergeTwoLists(list1: ListNode, list2: ListNode) -> ListNode:
-    dummy = ListNode()  
-    current = dummy
-    while list1 and list2:
-        if list1.val < list2.val:
-            current.next = list1
-            list1 = list1.next
-        else:
-            current.next = list2
-            list2 = list2.next
-        current = current.next
-    current.next = list1 if list1 else list2
-    
-    return dummy.next
-def printList(node: ListNode):
-    while node:
-        print(node.val, end=" ")
-        node = node.next
-    print()
-list1 = ListNode(1, ListNode(2, ListNode(4)))
-list2 = ListNode(1, ListNode(3, ListNode(4)))
-merged_list = mergeTwoLists(list1, list2)
-printList(merged_list)
-
-15. def count_vowels(s: str) -> int:
-    vowels = 'aeiouAEIOU'
-    count = 0
-    for char in s:
-        if char in vowels:
-            count += 1
-    return count
+12. def count_vowels(s):
+vowels = "aeiouAEIOU"
+count = 0
+for char in s:
+if char in vowels:
+count += 1
+return count
 input_string = "SaveethaSchoolofEngineering"
-number_of_vowels = count_vowels(input_string)
-print(f"Number of vowels = {number_of_vowels}")
+num_vowels = count_vowels(input_string)
+print(f"Number of vowels = {num_vowels}")
 
-16. def is_valid_string(s: str)-> bool:
-    """
-    checks if the string is valid (non-empty)after stripping whitespace.
-    Args:
-    s(str): Input string to validate.
-    Returns:
-    bool: True if the stripped string is not empty,False otherwise.
-    """
-    stripped_string=s.strip()
-    return bool(stripped_string)
-print(is_valid_string("  "))
+13. def calculate_square_and_cube(number):
+square = number ** 2
+cube = number ** 3
+return square, cube
+given_number = 0.6
+square_number, cube_number = calculate_square_and_cube(given_number)
+print(f"Square Number: {square_number}")
+print(f"Cube Number: {cube_number}")
 
-17. text = "   Hello, World!   "
+14. def calculate_student_users(total_users, staff_users):
+non_teaching_staff_users = staff_users // 3
+total_staff_users = staff_users + non_teaching_staff_users
+student_users = total_users - total_staff_users
+return student_users
+total_users = 856
+staff_users = 126
+student_users = calculate_student_users(total_users, staff_users)
+print(f"Student Users: {student_users}")
 
-stripped_text = text.strip()
+15. def reverse_string(s):
+reversed_str = ""
+for char in s:
+reversed_str = char + reversed_str
+return reversed_str
+input_string = "TEMPLE"
+reversed_string = reverse_string(input_string)
+print(f"Reverse String: {reversed_string}")
 
-print(f"Original: '{text}'")
-print(f"Stripped: '{stripped_text}'"),
+16. def print_pattern(rows):
+for i in range(1, rows + 1):
+for j in range(1, i + 1):
+print(f"{j/10:.1f}", end=" ")
+print()
+rows = 4
+print_pattern(rows)
+
+17. def smaller_numbers_than_current(nums):
+result = []
+for i in range(len(nums)):
+count = 0
+for j in range(len(nums)):
+if nums[j] < nums[i]:
+count += 1
+result.append(count)
+return result
+nums = [8, 1, 2, 2, 3]
+print(smaller_numbers_than_current(nums))  # Output: [4, 0, 1, 1, 3]
+
+18. from statistics import mean, median, mode
+def calculate_statistics(elements):
+mean_value = mean(elements)
+median_value = median(elements)
+mode_value = mode(elements)
+return mean_value, median_value, mode_value
+elements = [16, 18, 27, 16, 23, 21, 19]
+mean_value, median_value, mode_value = calculate_statistics(elements)
+print(f"Mean = {mean_value}")
+print(f"Median = {median_value}")
+print(f"Mode = {mode_value}")
+
+19. def separate_consonants_vowels(s):
+vowels = "aeiouAEIOU"
+consonants = ""
+vowel_str = ""
+for char in s:
+if char in vowels:
+vowel_str += char + " "
+elif char.isalpha():
+consonants += char + " "
+return consonants.strip(), vowel_str.strip()
+input_string = "Engineering"
+consonants, vowels = separate_consonants_vowels(input_string)
+print(f"Consonants: {consonants}")
+print(f"Vowels: {vowels}")
+
+20. def reverse_number(num):
+reversed_num = 0
+while num > 0:
+digit = num % 10
+reversed_num = reversed_num * 10 + digit
+num = num // 10
+return reversed_num
+number = int(input("Number: "))
+reversed_number = reverse_number(number)
+print(f"Reverse Number: {reversed_number}")
+
+21. def length_of_last_word(s):
+words = s.split()
+return len(words[-1]) if words else 0
+s = "Hello World"
+print(length_of_last_word(s))  # Output: 5
+
+22. def is_composite(n):
+if n < 4:
+return False
+for i in range(2, int(n**0.5) + 1):
+if n % i == 0:
+return True
+return False
+def print_composite_numbers(a, b):
+composite_numbers = []
+for num in range(a, b + 1):
+if is_composite(num):
+composite_numbers.append(num)
+return composite_numbers
+a = 12
+b = 19
+composite_numbers = print_composite_numbers(a, b)
+print(", ".join(map(str, composite_numbers)))
+
+23. def calculate_bonus(salary, grade):
+if grade == 'A':
+bonus = salary * 0.05
+elif grade == 'B':
+bonus = salary * 0.10
+else:
+bonus = 0
+if salary < 10000:
+bonus += salary * 0.02
+return bonus
+grade = input("Enter the grade of the employee: ")
+salary = float(input("Enter the employee salary: "))
+bonus = calculate_bonus(salary, grade)
+total_salary = salary + bonus
+print(f"Salary = {salary}")
+print(f"Bonus = {bonus}")
+print(f"Total to be paid = {total_salary}")
+
+24. import math
+from functools import reduce
+def gcd(a, b):
+while b:
+a, b = b, a % b
+return a
+def lcm(a, b):
+return a * b // gcd(a, b)
+def find_gcd(numbers):
+return reduce(gcd, numbers)
+def find_lcm(numbers):
+return reduce(lcm, numbers)
+n = 2
+numbers = [16, 20]
+gcd_result = find_gcd(numbers)
+lcm_result = find_lcm(numbers)
+print(f"GCD = {gcd_result}")
+print(f"LCM = {lcm_result}")
+
+25. def find_frequencies(lst):
+frequency_dict = {}
+for item in lst:
+if item in frequency_dict:
+frequency_dict[item] += 1
+else:  
+frequency_dict[item] = 1
+return frequency_dict
+lst = [1, 2, 8, 3, 2, 2, 2, 5, 1]
+frequencies = find_frequencies(lst)
+print("Element | Frequency")
+print("-------------------")
+for element, frequency in frequencies.items():
+print(f"{element} | {frequency}")
+
+26. def calculate_pow(x, n):
+return x ** n
+def add(x, n):
+return x + n
+def sub(x, n):
+return x - n
+def mul(x, n):
+return x * n
+def div(x, n):
+if n != 0:
+return x / n
+else:
+return "Division by zero is not allowed"
+x = int(input("X: "))
+n = int(input("N: "))
+choice = int(input("Choice (1: Pow, 2: Add, 3: Sub, 4: Mul, 5: Div): "))
+if choice == 1:
+result = calculate_pow(x, n)
+print(f"Pow(X, N) = {result}")
+elif choice == 2:
+result = add(x, n)
+print(f"Add(X, N) = {result}")
+elif choice == 3:
+result = sub(x, n)
+print(f"Sub(X, N) = {result}")
+elif choice == 4:
+result = mul(x, n)
+print(f"Mul(X, N) = {result}")
+elif choice == 5:
+result = div(x, n)
+print(f"Div(X, N) = {result}")
+else:
+print("Invalid choice")
+
+27. def common_divisors(a, b):
+count = 0
+for i in range(1, min(a, b) + 1):
+if a % i == 0 and b % i == 0:
+count += 1
+return count
+a = 4
+b = 12
+result = common_divisors(a, b)
+print(result)  # Output: 4
+
+28. def is_prime(n):
+if n <= 1:
+return False
+for i in range(2, int(n**0.5) + 1):
+if n % i == 0:
+return False
+return True
+def count_primes_and_composites(numbers):
+prime_count = 0
+composite_count = 0
+for num in numbers:
+if is_prime(num):
+prime_count += 1
+elif num > 1:
+composite_count += 1
+return prime_count, composite_count
+numbers = [4, 54, 29, 71, 7, 59, 98, 23]
+prime_count, composite_count = count_primes_and_composites(numbers)
+print(f"Composite number: {composite_count}")
+print(f"Prime number: {prime_count}")
+
+29. def check_voting_eligibility(age):
+voting_age = 18
+if age >= voting_age:
+return "You are eligible to vote."
+else:
+years_left = voting_age - age
+return f"You are allowed to vote after {years_left} years."
+age = int(input("Enter your age: "))
+result = check_voting_eligibility(age)
+print(result)
+
+30. def print_pattern(character, max_times):
+for i in range(1, max_times + 1):
+print(character * i)
+character = "%"
+max_times = 3
+print_pattern(character, max_times)
+
+31. def is_perfect_number(n):
+if n < 1:
+return False
+sum_of_divisors = 0
+for i in range(1, n):
+if n % i == 0:
+sum_of_divisors += i
+return sum_of_divisors == n
+given_number = 6
+if is_perfect_number(given_number):
+print("It's a Perfect Number")
+else:
+print("It's not a Perfect Number")
+
+32. def print_pattern(rows):
+num = 1
+for i in range(1, rows + 1):
+for j in range(i):
+print(num, end="")
+num += 1
+print()
+rows = 4
+print_pattern(rows)
+
+33. def factorial(n):
+if n == 0 or n == 1:
+else:
+return n * factorial(n - 1)
+n = 4
+result = factorial(n)
+print(f"{n} Factorial = {result}")
+
+34. def nth_odd_after_n_odds(n):
+nth_odd = 2 * n - 1
+result = nth_odd + 2 * n
+return result
+n = 4
+result = nth_odd_after_n_odds(n)
+print(f"{n}th odd number after {n} odd numbers = {result}")
+
+35. def calculate_grade(aggregate):
+if aggregate > 75:
+return "Distinction"
+elif 60 <= aggregate < 75:
+return "First Division"
+elif 50 <= aggregate < 60:
+return "Second Division"
+elif 40 <= aggregate < 50:
+return "Third Division"
+else:
+return "Fail"
+marks_python = int(input("Enter the marks in Python: "))
+marks_programming = int(input("Enter the marks in Programming: "))
+marks_mathematics = int(input("Enter the marks in Mathematics: "))
+marks_physics = int(input("Enter the marks in Physics: "))
+total_marks = marks_python + marks_programming + marks_mathematics + marks_physics
+aggregate_marks = total_marks / 4
+grade = calculate_grade(aggregate_marks)
+print(f"Total: {total_marks}")
+print(f"Aggregate: {aggregate_marks}")
+print(f"Grade: {grade}")
+
+36. def reverse_alphabetical_order(word):
+sorted_word = sorted(word, reverse=True)
+return ''.join(sorted_word)
+input_word = "MOSQUE"
+result = reverse_alphabetical_order(input_word)
+print(f"Alphabetical Order: {result}")
+
+37. def print_pattern(rows):
+for i in range(1, rows + 1):
+for j in range(1, i + 1):
+print(j, end="")
+print()
+rows = 5
+print_pattern(rows)
+
+38. def binary_to_decimal(binary):
+decimal = 0
+binary = binary[::-1]
+for i in range(len(binary)):
+decimal += int(binary[i]) * (2 ** i)
+return decimal
+def binary_to_octal(binary):
+decimal = binary_to_decimal(binary)
+octal = ""
+while decimal > 0:
+octal = str(decimal % 8) + octal
+decimal //= 8
+return octal
+binary_number = input("Given number: ")
+conversion_choice = input("Conversion (D/O): ")
+if conversion_choice.upper() == 'D':
+result = binary_to_decimal(binary_number)
+print(f"Decimal number: {result}")
+elif conversion_choice.upper() == 'O':
+result = binary_to_octal(binary_number)
+print(f"Octal number: {result}")
+else:
+print("Invalid choice")
+
+39. def count_factors(n):
+count = 0
+for i in range(1, n + 1):
+if n % i == 0:
+count += 1
+return count
+n = 6
+num_factors = count_factors(n)
+print(f"Number of factors for {n}: {num_factors}")
+
+40. def swap_with_temp(a, b):
+temp = a
+a = b
+b = temp
+return a, b
+def swap_without_temp(a, b):
+a = a + b
+b = a - b
+a = a - b
+return a, b
+def swap_with_tuple(a, b):
+a, b = b, a
+return a, b
+a = 4
+b = 6
+a, b = swap_with_temp(a, b)
+print(f"After swapping with temp variable: A = {a}, B = {b}")
+a, b = swap_without_temp(a, b)
+print(f"After swapping without temp variable: A = {a}, B = {b}")
+a, b = swap_with_tuple(a, b)
+print(f"After swapping using tuple assignment: A = {a}, B = {b}")
